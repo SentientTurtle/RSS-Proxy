@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id><%=@metadata.id |> Phoenix.HTML.safe_to_string()%></id>
+  <title><%=@metadata.title |> Phoenix.HTML.safe_to_string()%></title>
+  <icon><%=@metadata.icon%></icon>
+  <updated><%=@metadata.updated |> Phoenix.HTML.safe_to_string()%></updated>
+
+  <%= for tweet <- @entries do %>
+    <entry>
+        <id><%=tweet.id |> Phoenix.HTML.safe_to_string()%></id>
+        <title><%=tweet.title |> Phoenix.HTML.safe_to_string()%></title>
+        <link href="<%=tweet.link%>" />
+        <updated><%=tweet.date |> Phoenix.HTML.safe_to_string()%></updated>
+        <author><name><%=tweet.author |> Phoenix.HTML.safe_to_string()%></name></author>
+        <content type="html">
+        <%=tweet.content |> Phoenix.HTML.safe_to_string() %>
+        </content>
+    </entry>
+  <% end %>
+</feed>
